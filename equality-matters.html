@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8" />
+      <title>Equality Matters</title>
+      <link rel="icon" type="image" href="teo-logo-hex.png">
+
+      <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.4.1/dist/jquery.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/gh/FezVrasta/popper.js@v1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/twbs/bootstrap@v4.5.2/dist/js/bootstrap.min.js"></script>
+
+      <script src="https://kit.fontawesome.com/ee3848f0f5.js" crossorigin="anonymous"></script>
+
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/3.0.1/chartjs-plugin-annotation.min.js" integrity="sha512-Hn1w6YiiFw6p6S2lXv6yKeqTk0PLVzeCwWY9n32beuPjQ5HLcvz5l2QsP+KilEr1ws37rCTw3bZpvfvVIeTh0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+      <!-- <script src = "scripts/domains_data.js"></script>
+      <script src = "scripts/ni_map.js"></script>
+      <script src = "scripts/config.js"></script> -->
+
+      <link rel ="stylesheet" href ="style.css">
+
+      <!-- import data for use in charts - needs to be imported in each script -->
+       <!-- only useful here if some data transformations to happen in head section -->
+      <!-- <script type="module">
+        import * as data from './data.js';
+      </script> -->
+
+  </head>
+
+
+  <body>
+
+    <div id="cookie-banner"></div>
+
+    <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div>
+
+    <div id="top-container">
+      <div id="top-menu" class="grid mtb">
+        <div class="nisra-logo-container">
+          <a href="https://www.nisra.gov.uk/" target="_blank"><img id="top-menu-nisra-logo" src="nisra-white-bilingual.svg" alt="NISRA logo. Clicking image takes user to NISRA website"></a>
+        </div>
+        <div id="dashboard-title-container">
+          <h1 id="dashboard-title">Equality Matters</h1>
+          <span id="dashboard-subtitle">Access equality data across a range of key statistics for Northern Ireland</span>
+        </div>
+        
+        <!-- <div>
+          <form id="top-menu-items" class="row" action="">
+            <button id="domains-btn" class="top-menu-item selected-item" name="tab" value="domains"><i
+                class="fas fa-chart-line"></i> S75 Group</button>
+            <button id="overall-btn" class="top-menu-item" name="tab" value="overall"><img id="hex-icon"
+                src="img/three-hexagons.svg" alt="Hexagons logo" style="width: 20px;"> Dept.</button>
+            <button id="maps-btn" class="top-menu-item" name="tab" value="maps"><img id="ni-icon"
+                src="img/Northern_Ireland_outline.svg" alt="Outline of Northern Ireland icon" style="width: 20px;">
+              Theme</button>
+            <button id="maps-btn" class="top-menu-item" name="tab" value="maps"><img id="ni-icon"
+                src="img/Northern_Ireland_outline.svg" alt="Outline of Northern Ireland icon" style="width: 20px;">
+              Strategy</button>
+            <button id="help-btn" class="top-menu-item" name="tab" value="help"><i
+                class="fa-regular fa-address-book"></i></i> Notes</button>
+          </form>
+          <form id="search-bar" autocomplete="off">
+            <div id="search-box">
+              <div class="autocomplete" style="width: 400px;">
+                <input id="search-text" type="text" name="indicator" placeholder="Search by indicator name">
+              </div>
+              <button type="button" id="search-btn" class="btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+          </form>
+        </div> -->
+      </div>
+    </div>
+    <hr style="border-top: 10px solid #cedc20; margin: 0">
+
+    <div class="button-row" style="display: none;">
+      <form id="back-button-container" class="row">
+        <div id="back-button"></div>
+      </form>
+    </div>
+    <div class="button-row" style="display: none;">
+      <form id="button-container" class="row">
+        <div id="button-left"></div>
+        <div id="button-right"></div>
+      </form>
+    </div>
+
+    <div id="content-centre">
+      <div id="main-container">
+
+        <aside>
+          <h3 style="font-weight: normal;">Explore other groups within</h3>
+          <p style="font-weight: bold; font-size: 14pt;">Income Deprivation</p>
+          <form id = "selection-form" style="list-style-type: none; padding: 0;">
+            <button name = "s75" value = "age">Age</button>
+            <button name = "s75" value = "depend">Dependents</button>
+            <button name = "s75" value = "disab">Disability</button>
+            <!-- <button name = "s75" value = "ethnic">Ethnicity</button> -->
+            <button name = "s75" value = "marital">Marital Status</button>
+            <button name = "s75" value  = "political">Political Opinion</button>
+            <button name = "s75" value = "race">Race</button>
+            <button name = "s75" value = "religion">Religion</button>
+            <button name = "s75" value = "sex">Sex</button>
+            <button name = "s75" value = "ori">Sexual Orientation</button>
+          <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;">
+          <h3 style="font-weight: normal;">View a different Key Metric</h3>
+          <div id = "key-btns">
+            <button name = "key" value = "pubt">Active Travel - Public Transport</button>
+            <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
+            <button name = "key" value = "artc">Arts and Culture activities participation</button>
+            <button name = "key" value = "comr">Community Relations</button>
+            <button name = "key" value = "c21501">Economic Activity</button>
+            <button name = "key" value = "hsge">Health Survey - General Health</button>
+            <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
+            <button name = "key" value = "hssm">Health Survey - Smoking</button>
+            <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
+            <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> 
+            <button name = "key" value = "c21503">Hours Worked</button>
+            <button name = "key" value = "incd">Income Deprivation and Inequality</button>
+            <button name = "key" value = "c21502">Industry of Employment</button>
+            <button name = "key" value = "life">Life Satisfaction</button>
+            <button name = "key" value = "lone">Loneliness</button>
+            <button name = "key" value = "slsa">Qualifications of School Leavers</button>
+            <button name = "key" value = "refw">Refugee Welcome</button>
+            <button name = "key" value = "self">Self-efficacy</button>
+            <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
+            <button name = "key" value = "spor">Sport and Physical Activity</button>
+            <button name = "key" value = "c21500">Usual Resident Population</button>
+          </div>
+          </form>
+            
+
+
+        </aside>
+
+        <div id="main-content" class="screen">
+          <h2 id="domains-title" style="width: 100%; text-align: center;"></h2>
+          
+
+          <div class="intro">
+            <h2><span class = "measure_title"></span> by <span class = "eq_grp_name" style = "color:#3878c5;"></span></h2>
+            <h3>How do we measure this?</h3>
+            <p id = "how_do_we_measure"></p>
+          </div>
+          <!-- <br>
+          <br>
+          <div>
+            <h5>List of measures that are split by <span class="eq_grp_name"></span></h5>
+            <p class = "measures_in_group_titles"></p>
+            <div id="listContainer"></div>
+            <p class = "measures_in_group"></p>
+          </div>
+          <br>
+          <br> -->
+          <div class="div-style-bar">
+            <h3>Percentage of NI population <span class= "latest_year" style = "color:#3878c5;"></span></h3>
+            <p style="margin-bottom: 10px;">The following bar chart shows data for <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>. The NI average figure is added for comparison in a blue line.</p>
+          
+
+          
+    
+            <button class="btn" id="chartBtn">View chart</button>
+            <button class="btn" id="tableBtn">View table</button>
+
+          
+            <div id="chartView" class ="chart-container">
+              <button class="btn" id="downloadButton">Download chart as image</button>
+            <!-- <div class="chart-container"> -->
+            <canvas id="bar_line_chart"></canvas>
+          
+            </div>
+
+            <div id="tableView" class="table-container">
+              <button class="copy-button">Copy table</button>
+              <table id="dataTable">
+                <thead>
+                  <tr>
+                    <th class="eq_grp_name"></th>
+                    <th>Percentage of population</th>
+                    <th>NI average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+              <!-- <button class="copy-button" >Copy table</button> -->
+            </div>
+          </div>
+          
+          <!-- <div id="chartContainer"></div> -->
+          <!-- this will apply the grid css to all the canvases within the container but not configured quite right -->
+          <h3 style="margin-top: 30px;">Percentage of NI population <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
+          <p>The following line chart shows data for <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>. The NI average figure is added for comparison in a blue dashed line.</p>
+          
+          <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
+        
+          <!-- <div class="container"> -->
+            <!-- <div class="grid">   -->
+              <!-- <div class="div-style-line"> -->
+                  <!-- <h2>Percentage of population living in absolute poverty by age group trend</h2><br> -->
+                    <!-- <canvas id="abs_pov_16_34_trend"></canvas>
+              </div>
+              <div class="div-style-line">
+                    <canvas id= "abs_pov_35_49_trend"></canvas>
+              </div>
+              <div class="div-style-line">
+                    <canvas id="abs_pov_50_64_trend"></canvas>
+              </div>
+              <div class="div-style-line">
+                    <canvas id="abs_pov_65plus_trend"></canvas>
+              </div> -->
+              <!-- <div class="div-style-line">
+                <canvas id="chart1"></canvas>
+                </div>
+              <div class="div-style-line">
+                  <canvas id="chart2"></canvas>
+                  </div> -->
+            
+            
+            <!-- </div>  -->
+            <!--close grid div-->
+          
+
+            <div>
+              <br>
+              <h3> Source</h3>
+              <p style="margin-bottom: 10px;">Data originally collected and presented in:<br> <a class = "source_name" id="sourceId" target="_blank"></a></p>
+              <p> Data presented here has been extracted from the NISRA Data Portal:<br> <a href="https://data.nisra.gov.uk/table/INCDEPINEQEQ" target="_blank">https://data.nisra.gov.uk/table/INCDEPINEQEQ</a></p>
+              
+              
+            </div>
+
+           <!-- accordion section    -->
+            <h3>Notes</h3>
+           <button class="accordion-button">Click to expand or hide notes section</button>
+            <div class="panel">
+              <p id="abs_pov_notes"></p>
+            </div> <!--close panel div-->
+        
+        
+        
+          </div> <!--closes main content div-->
+
+      </div>
+    </div>
+
+    <hr style="border-top: 10px solid #cedc20; margin-bottom: 0; margin-top: 25px;">
+    <footer>
+      <div id="footer-container">
+        <div class="row">
+          <div style="height: 170px; width: 350px; margin: 10px;">
+            <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Links</h3>
+            <a href="https://data.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Data
+              Portal</a><br>
+            <a href="https://visual.nisra.gov.uk/" target="_blank" rel="noopener noreferrer">NISRA Interactive
+              Data Visualisation Hub</a><br>
+            <a href="https://www.opendatani.gov.uk/" target="_blank" rel="noopener noreferrer">OpenDataNI</a><br>
+            <a href="https://www.nidirect.gov.uk" target="_blank" rel="noopener noreferrer">NIDirect</a><br>
+            <a href="https://www.gov.uk/" target="_blank" rel="noopener noreferrer">GOV.UK</a><br>
+          </div>
+          <div style="height: 170px; width: 120px; margin: 20px 0px 20px 60px;">
+            <h3 style="font-weight: 700; font-size: 18px; color: #ffffff">Follow NISRA</h3>
+            <i class="fa-brands fa-facebook-f"></i> <a href="https://www.facebook.com/nisra.gov.uk" target="_blank"
+              rel="noopener noreferrer">Facebook</a><br>
+            <i class="fa-brands fa-x-twitter"></i> <a href="https://twitter.com/NISRA" target="_blank"
+              rel="noopener noreferrer">Twitter</a><br>
+            <i class="fa-brands fa-youtube"></i> <a href="https://www.youtube.com/user/nisrastats" target="_blank"
+              rel="noopener noreferrer">YouTube</a><br>
+          </div>
+          <div id="teo-logo-container">
+            <h4 style="margin-right: 20px; font-weight: normal; padding-bottom: 30px;">Funded by:</h4>
+            <a href="https://www.executiveoffice-ni.gov.uk/" target="_blank"><img id="footer-teo-logo" src="logo-white-teo.png" alt="The Executive Office logo. Clicking image takes user to TEO website"></a>
+          </div>
+        </div>
+        <div class="flex-list-footer">
+          <ul
+            style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin-left: -1px;">
+            <li class="cc-li" style="border-left:0px;"><a href="https://www.nisra.gov.uk/crown-copyright" target="_blank"
+                rel="noopener noreferrer">© Crown Copyright</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/contacts/programme-government-analytics-executive-office"
+                target="_blank" rel="noopener noreferrer">Contact us</a></li>
+            <li class="cc-li"><a href="https://consultations.nidirect.gov.uk/teo/d8cf2dfc" target="_blank">Leave
+                feedback</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/terms-and-conditions" target="_blank"
+                rel="noopener noreferrer">Terms and conditions</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/cookies" target="_blank"
+                rel="noopener noreferrer">Cookies</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/nisra-privacy-notice" target="_blank"
+                rel="noopener noreferrer">Privacy</a></li>
+            <li class="cc-li"><a href="https://www.nisra.gov.uk/accessibility-statement-nisra" target="_blank"
+                rel="noopener noreferrer">Accessibility Statement</a></li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </footer>
+
+  </body>
+
+    <script src = "scripts/cookies_script.js"></script>
+    <!-- <script src = "scripts/data_functions.js"></script>
+    <script src = "scripts/navigation_functions.js"></script> -->
+
+</html>
+
+<script type="module">
+
+  // import data for use in charts - needs to be imported in each script
+  import * as data from './data.js';
+
+  let lookupTableEqCode = data.lookup_table_eq_code;
+  let lookupTableDisplayGrp = data.lookup_table_display_grp;
+  let lookupTableMeasureTitle = data.lookup_table_measure_title;
+
+  function filterVariablesByName(data, matchStrings) {
+    if (!Array.isArray(matchStrings) || matchStrings.length !== 2) {
+        throw new Error("matchStrings must be an array of exactly two strings");
+    }
+
+    const [match1, match2] = matchStrings;
+
+    const filtered = Object.entries(data)
+        .filter(([key]) => key.includes(match1) && key.includes(match2))
+        .map(([, value]) => value); // Extract only the values
+
+    return filtered.flat(); // Flatten the array if the values are arrays
+  }
+
+  // filters the data based on a key and the returned values from a lookup - returns data arrays as an object
+  function filterVariablesByLookup(data, lookupKey, matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, lookupKey)) {
+        throw new Error(`lookupKey "${lookupKey}" not found in lookupTable`);
+    }
+
+    const lookupValues = lookupTable[lookupKey];
+    if (!Array.isArray(lookupValues)) {
+        throw new Error(`Value for lookupKey "${lookupKey}" must be an array`);
+    }
+
+    // Filter `data` keys that match `matchString` and any value in `lookupValues`
+    const filtered = Object.entries(data).filter(([key]) =>
+        key.includes(matchString) && lookupValues.some(val => key.includes(val))
+    );
+
+    return Object.fromEntries(filtered);
+  }
+  
+  // returns a value from a lookup table based on matching a key value supplied
+  function lookupValueByKey(key, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, key)) {
+        throw new Error(`Key "${key}" not found in lookupTable`);
+    }
+
+    // Return the corresponding value from the lookup table
+    return lookupTable[key];
+  }
+
+  export function filterMetadataFromData(data, keyToMatch, fieldName) {
+    if (typeof data !== 'object' || data === null) {
+        throw new Error("data must be a valid object");
+    }
+
+    // Dynamically construct the key to search in the data object
+    const fullKey = `${keyToMatch}_metadata`;
+
+    if (!Object.prototype.hasOwnProperty.call(data, fullKey)) {
+        throw new Error(`Key "${fullKey}" not found in data`);
+    }
+
+    const metadata = data[fullKey];
+    if (typeof metadata !== 'object' || metadata === null) {
+        throw new Error(`Value for key "${fullKey}" must be a valid object`);
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(metadata, fieldName)) {
+        throw new Error(`Field "${fieldName}" not found in the object for key "${fullKey}"`);
+    }
+
+    // Return the value associated with the fieldName
+    return metadata[fieldName];
+  }
+
+  // accepts the current S75 group value and returns all measures that are split by that group
+  function returnS75CatsByLookup(data ,matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (typeof matchString !== 'string' || matchString.trim() === "") {
+        throw new Error("matchString must be a non-empty string");
+    }
+
+    // Ensure the matchString exists as a key in the lookupTable
+    if (!Object.prototype.hasOwnProperty.call(lookupTable, matchString)) {
+        throw new Error(`Key "${matchString}" not found in lookupTable`);
+    }
+
+    // Get the array of lookup values for the matchString
+    const lookupValues = lookupTable[matchString];
+    if (!Array.isArray(lookupValues) || lookupValues.length === 0) {
+        throw new Error(`Value for key "${matchString}" in lookupTable must be a non-empty array`);
+    }
+
+    // Filter `data` keys that match any value in the lookupValues array
+    const filteredKeys = Object.keys(data).filter(key =>
+        lookupValues.some(val => key.includes(val))
+    );
+
+    // Extract unique prefixes (up to the first '_') from the filtered keys
+    const uniquePrefixes = [...new Set(filteredKeys.map(key => key.split('_')[0]))];
+
+    return uniquePrefixes;
+  }
+
+  // takes the output of returnS75CatsByLookup and matches to another lookup to get full titles
+  function mapPrefixesToLookup(prefixes, lookup) {
+    if (!Array.isArray(prefixes)) {
+        throw new Error("Prefixes must be an array");
+    }
+
+    if (typeof lookup !== 'object' || lookup === null) {
+        throw new Error("Lookup must be a valid object");
+    }
+
+    // Map each prefix to its corresponding value in the lookup
+    const mappedValues = prefixes.map(prefix => {
+        if (Object.prototype.hasOwnProperty.call(lookup, prefix)) {
+            return lookup[prefix];
+        } else {
+            return null; // Return null if the prefix doesn't exist in the lookup
+        }
+    });
+
+    return mappedValues;
+}
+  
+// Get the current URL of the window
+let window_url = window.location.href;
+
+let group;  // Variable to store the 's75' parameter value
+let ind;  // Variable to store the 'key' parameter value
+let s75CatMeasures;  // Variable to store the measures associated with the 's75' value
+let key_btns = document.getElementById("key-btns").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-btns"
+let measureTitle // Variable to store measure parameter;
+let eqGrpDisplayName // Variable to store group name;
+let startYear //variable to store start year of selected data
+let latestYear //variable to store start year of selected data
+
+if (window_url.indexOf("?") > -1) {  
+  // Check if the URL contains a query string ('?')
+  let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");  
+  // Extract the query string part after '?' and split it into key-value pairs
+  let base_url = window_url.slice(0, window_url.indexOf("?"));  
+  // Extract the base URL without query parameters
+  for (let i = 0; i < selections.length; i++) {  
+    // Loop through each key-value pair in the query string
+    if (selections[i].indexOf("s75=") > -1) {  
+      // Check if the parameter 's75' exists in the URL
+      group = selections[i].slice(selections[i].indexOf("s75=") + 4);  
+      // Extract the value of 's75' (after "s75=")
+      localStorage.setItem("s75", group);  
+      // Store the 's75' value in localStorage for persistence
+      s75CatMeasures = returnS75CatsByLookup(data, group, lookupTableEqCode);  
+      // Call a function to retrieve measures associated with 's75'
+      for (let j = 0; j < key_btns.length; j++) {  
+        // Loop through all buttons in "key-btns"
+        if (s75CatMeasures.includes(key_btns[j].value)) {  
+          // If the button's value is in the list of valid measures, show it
+          key_btns[j].style.display = "block";
+        } else {
+          // Otherwise, hide the button
+          key_btns[j].style.display = "none";
+        }
+      }
+      if (s75CatMeasures.includes(localStorage.getItem("key"))) {  
+        // If the current stored 'key' is still a valid option
+        ind = localStorage.getItem("key");
+      } else {
+        // Otherwise, default to the first available measure
+        ind = s75CatMeasures[0];
+      }       
+    }
+    if (selections[i].indexOf("key=") > -1) {  
+      // Check if the parameter 'key' exists in the URL 
+      ind = selections[i].slice(selections[i].indexOf("key=") + 4);  
+      // Extract the value of 'key' (after "key=")
+      localStorage.setItem("key", ind);  
+      // Store the 'key' value in localStorage for persistence
+      group = localStorage.getItem("s75");  
+      // Retrieve the stored 's75' value
+    }
+  }
+  if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {  
+    // If the URL is not already formatted correctly with the selected values
+    window.location.href = base_url + "?s75=" + group + "&key=" + ind;  
+    // Redirect to the updated URL to ensure correct parameters are set
+  }
+  // Update document title
+  measureTitle = filterMetadataFromData(data, ind, "title");
+  eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
+  startYear = filterMetadataFromData(data, ind, "start_year");
+  latestYear = filterMetadataFromData(data, ind, "end_year");
+  document.getElementsByTagName("title")[0].textContent += " - " + measureTitle + " by " + eqGrpDisplayName;
+} else {  
+  // If the URL has no query parameters, set default values
+  group = "age";  
+  ind = "incd";  
+  // Set default values for 's75' and 'key'
+  localStorage.setItem("s75", group);  
+  localStorage.setItem("key", ind);  
+  // Store the default values in localStorage
+  measureTitle = filterMetadataFromData(data, ind, "title");
+  eqGrpDisplayName = lookupValueByKey(group, lookupTableDisplayGrp);
+  startYear = filterMetadataFromData(data, ind, "start_year");
+  latestYear = filterMetadataFromData(data, ind, "end_year");
+}  
+
+  // ################################################################################
+  // ################################################################################
+  // ################################################################################
+  // ################################################################################
+
+  let yearLabels = filterVariablesByName(data, [ind, 'line_labels']);
+  let niLineData = filterVariablesByName(data, [ind, 'ni']);
+  let niAvgLine = niLineData[niLineData.length - 1];
+  let eqGrpCatLabels = filterVariablesByName(data, [ind, group]);
+  let eqGrpCatLineData = filterVariablesByLookup(data, group, ind, lookupTableEqCode);
+  let eqGrpCatBarData = Object.values(eqGrpCatLineData).map(value => value[value.length - 1]);
+  let numEQGrpCats = eqGrpCatLabels.length;
+  let s75CatMeasuresTitle = mapPrefixesToLookup(s75CatMeasures, lookupTableMeasureTitle);
+ 
+  
+  console.log('Year Labels:', yearLabels);
+  console.log('N.I. Line Data:', niLineData);
+  console.log('N.I. Average Line:', niAvgLine);
+  console.log('EQ Group Category Labels:', eqGrpCatLabels);
+  console.log('EQ Category Data:', eqGrpCatLineData);
+  console.log('EQ Group Display Name:', eqGrpDisplayName);
+  console.log('Bar Data:', eqGrpCatBarData);
+  console.log('Number of Categories:', numEQGrpCats);
+  console.log('Lookup Table:', lookupTableEqCode);
+  console.log('Measure Title:', measureTitle);
+  console.log('Start Year:', startYear);
+  console.log('Latest Year:', latestYear);
+  console.log('Section 75 Category Measures:', s75CatMeasures);
+  console.log('Section 75 Category Measures Titles:', s75CatMeasuresTitle)
+
+  let chartInstance = null;
+ 
+  Chart.register(ChartDataLabels);
+
+  // determine maxValue of the current bar data
+  const maxValue = Math.max(...eqGrpCatBarData);
+  const maxAvgDiff = niAvgLine - maxValue;
+ 
+  // Function to calculate padding based on screen size
+  function calculateBarPadding() {
+    const viewportWidth = window.innerWidth;
+
+    if (maxValue < 75 && maxAvgDiff <= -2 || maxValue >= 75 && maxAvgDiff <= -9){
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.11;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.08;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.06;
+      } else {
+          return maxValue * 0.04;
+      }
+    }
+    else if (maxValue >= 75 && (maxAvgDiff > -9 && maxAvgDiff <= -4)){
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.16;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.13;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.11;
+      } else {
+          return maxValue * 0.09;
+      }
+    }
+    else if (maxValue < 75 && (maxAvgDiff > -2 && maxAvgDiff <= -0.5)){
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.20;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.17;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.15;
+      } else {
+          return maxValue * 0.13;
+      }
+    }
+    else { 
+      if (viewportWidth <= 1024) {
+          // Tablet: Medium padding
+          return maxValue * 0.31;
+      } else if (viewportWidth <=1200) {
+          return maxValue * 0.28;
+      } else if (viewportWidth <=1500) {
+          // Desktop: Larger padding
+          return maxValue * 0.26;
+      } else {
+          return maxValue * 0.24;
+      }
+    }
+  }
+
+  console.log("max value:", maxValue);
+  console.log("average value:", niAvgLine);
+  console.log("avg diff:", maxAvgDiff)
+
+  // Initial padding - needs to be different when the average value is close or the same as the max value - set thresholds
+  // in calculateBarPadding
+  let barPadding = calculateBarPadding();
+
+  // Bar chart function
+  function createBarChart(cat_labels, bar_data, ni_line) {
+    const ctx_bar_line_chart = document.getElementById('bar_line_chart').getContext('2d');
+    chartInstance = new Chart(ctx_bar_line_chart, {
+      type: 'bar',
+      data: {
+        labels: cat_labels,
+        datasets: [{
+          label:`% of NI Population`,
+          data: bar_data,
+          backgroundColor: '#00205B',
+          datalabels: {
+            display: true,
+            anchor: 'start',
+            align: 'end',
+            formatter: (value) => `${value}%`,
+            color: '#fff',      // Set the label color
+            font: {
+              size: 22
+            }
+          },
+          order: 2
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: {
+          legend: {
+            display: false
+          },
+          // suppress datalabels globally for this chart - turned on individually for each dataset as needed
+          datalabels: {
+            display: false
+          },
+          title: {
+            display: false,
+          },
+          customLinePlugin: false, // Disable the line mouseover plugin for this chart
+          annotation: {
+            annotations: {
+              avg_line: {
+                type: 'line',
+                xMin: ni_line ,             // Set the Y position for the line
+                xMax: ni_line ,             // Same as yMin for a horizontal line
+                borderColor: '#3b80ae',   // Color of the line
+                borderWidth: 6,
+                label: {
+                  content: (ctx) => {
+                    return [
+                      'N.I.',' Average', `${ni_line}%`
+                    ];
+                  },
+                  display: true,       // Ensure label is displayed
+                  position: 'center',     // Position of the label
+                  backgroundColor: 'rgba(255, 255, 255, 1)', // Optional: Label background color,
+                  color: 'black',      // Optional: Text color for the label
+                  font: {
+                    size: 18,        // Font size of the label text
+                    weight: 'bold'
+                  },
+                  padding: 4,           // Optional: Padding around the label
+                  borderColor: 'black',
+                  borderWidth: 3,
+                  borderRadius: 1,
+                  callout: {
+                    display: true,
+                    color: 'black',
+                    width: 30,
+                    length: 10
+                  },
+                  xAdjust: 80
+                }
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            grid: {
+              display: false
+            },
+            border: {
+              display: true,
+              width: 3,
+              color: '#00205B'
+            },
+            ticks: {
+              display: true,
+              font: {
+                size: 16
+              }
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            },
+            border: {
+              display: false
+            },
+            min: 0,
+            max: maxValue + barPadding,
+            ticks: {
+              display: false,
+            }
+          }
+        }
+      }
+    }
+  )};
+  
+  const latest_year = document.querySelectorAll('.latest_year');
+  for (let i = 0; i < latest_year.length; i++) {
+    latest_year[i].innerHTML = latestYear;
+  }
+  
+  const start_year = document.querySelectorAll('.start_year');
+  for (let i = 0; i < start_year.length; i++) {
+    start_year[i].innerHTML = startYear;
+  }
+
+  const eq_grp_name = document.querySelectorAll('.eq_grp_name');
+  for (let i = 0; i < eq_grp_name.length; i++) {
+    eq_grp_name[i].innerHTML = eqGrpDisplayName;
+  }
+
+  const measure_title = document.querySelectorAll('.measure_title');
+  for (let i = 0; i < measure_title.length; i++) {
+    measure_title[i].innerHTML = measureTitle;
+  }
+
+  const measures_in_group = document.querySelectorAll('.measures_in_group');
+  for (let i = 0; i < measures_in_group.length; i++) {
+    measures_in_group[i].innerHTML = s75CatMeasures;
+  }
+
+  // create ul containing all the measure titles that are split by the s75 current group
+  const measures_in_group_titles = document.querySelectorAll('.measures_in_group_titles');
+
+  // Generate the <ul> structure
+  const ulElement = document.createElement('ul');
+  s75CatMeasuresTitle.forEach(title => {
+    const liElement = document.createElement('li');
+    liElement.textContent = title; // Add the title as the text of the <li>
+    ulElement.appendChild(liElement); // Append the <li> to the <ul>
+  });
+
+  // Replace the content of each target element with the generated <ul>
+  for (let i = 0; i < measures_in_group_titles.length; i++) {
+    measures_in_group_titles[i].innerHTML = ''; // Clear existing content
+    measures_in_group_titles[i].appendChild(ulElement.cloneNode(true)); // Append the <ul> to each element
+  }
+  
+  let how_measure = data[`${ind}_how_do_we_measure`];
+  document.getElementById("how_do_we_measure").innerHTML =
+   how_measure;
+
+  let sourceUrl = data[`${ind}_source_url`];
+  document.getElementById("sourceId").href = sourceUrl
+
+  let sourceName = data[`${ind}_source_name`];
+
+  const source_name = document.querySelectorAll('.source_name');
+  for (let i = 0; i < source_name.length; i++) {
+    source_name[i].innerHTML = sourceName;
+  }
+
+
+  document.getElementById("abs_pov_notes").innerHTML =
+  // "This is my note.\nNew line.";
+  ["<br>1. Age band 16-24 and 25-34 have been grouped together due to small sample sizes.<br>2. Age is based on the age of the head of the benefit unit (family)."];
+
+  // function to take data from js arrays and populate table
+  function populateTable(){
+    const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+
+    // clear existing rows
+    tableBody.innerHTML = "";
+
+    // loop through data arrays
+    for (let i = 0; i < eqGrpCatLabels.length; i++) {
+      // create new row and cells
+      const row = document.createElement("tr");
+
+      const ageCell = document.createElement("td");
+      ageCell.textContent = eqGrpCatLabels[i];
+      row.appendChild(ageCell);
+
+      const povCell = document.createElement("td");
+      povCell.textContent = eqGrpCatBarData[i];
+      row.appendChild(povCell);
+
+      const niCell = document.createElement("td");
+      niCell.textContent = niAvgLine[i];
+      row.appendChild(niCell);
+
+      // append row to table body
+      tableBody.appendChild(row);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".copy-button");
+    button.addEventListener("click", copyTable);
+  });
+  function copyTable(){
+    const table = document.getElementById("dataTable");
+    if (!table) {
+      alert("Table not found");
+      return;
+    }
+
+    // clone table to remove html specific styles
+    const clonedTable = table.cloneNode(true);
+
+    // remove unnecessary inline styles
+    clonedTable.removeAttribute("style");
+    clonedTable.querySelectorAll("th, td").forEach(cell => {
+      cell.removeAttribute("style");
+    });
+
+    // add cloned table to a hidden container in the DOM. to allow copying the table from button above table
+    const hiddenContainer = document.createElement("div");
+    hiddenContainer.style.position = "absolute";
+    hiddenContainer.style.left = "-9999px"; // move it off screen
+    hiddenContainer.appendChild(clonedTable);
+    document.body.appendChild(hiddenContainer);
+
+    // use cloned table for copying
+    const range = document.createRange();
+    range.selectNode(clonedTable);
+    const selection = window.getSelection();
+    // window.getSelection().removeAllRanges();
+    // window.getSelection().addRange(range);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand("copy");
+    // window.getSelection().removeAllRanges();
+    // alert("Table copied to clipboard");
+
+    // cleanup
+    document.body.removeChild(hiddenContainer);
+    selection.removeAllRanges();
+    alert("Table copied to clipboard");
+  }
+
+  // click event listeners for download chart image button
+  document.getElementById('downloadButton').addEventListener('click', () => downloadChart());
+ 
+  function downloadChart(){
+    if (chartInstance) {
+      const link = document.createElement('a');
+      const chart_image_filename = measureTitle + ` ` + latestYear.slice(0,4) + `-` + latestYear.slice(5,7) + `.png`;
+      link.href = chartInstance.toBase64Image();
+      link.download = chart_image_filename;
+      link.click()
+    }
+  }
+
+  // // set chart background to white. default is transparent for download
+  // const backgroundColorPlugin = {
+  //   id: 'customCanvasBackgroundColor',
+  //   beforeDraw: (chart) => {
+  //     const ctx = chart.canvas.getContext('2d');
+  //     ctx.save();
+  //     ctx.globalCompositeOperation = 'destination-over';
+  //     ctx.fillStyle = 'white';
+  //     ctx.fillRect(0, 0, chart.width, chart.height);
+  //     ctx.restore();
+  //   }
+  // };
+
+  // click event listeners for view chart and view table buttons
+  document.getElementById('chartBtn').addEventListener('click', () => showView('chartView'));
+  document.getElementById('tableBtn').addEventListener('click', () => showView('tableView'));
+
+  function showView(viewId) {
+    const tableView = document.getElementById("tableView");
+    const chartView = document.getElementById("chartView");
+
+    if (viewId === 'tableView'){
+      tableView.style.display = "block";
+      chartView.style.display = "none";
+      // destroy chart instance if it exists to free up memory
+      if (chartInstance) {
+        chartInstance.destroy();
+        chartInstance = null;
+      }
+    } else if (viewId === 'chartView'){
+      tableView.style.display = "none";
+      chartView.style.display = "block";
+      // recreate chart only when needed
+      if (!chartInstance){
+        createBarChart(eqGrpCatLabels,eqGrpCatBarData,niAvgLine);
+      }
+    }
+    document.getElementById(viewId).style.display = "block";
+  };  
+
+  // function to populate the table and show table and chart options on page load
+  window.onload = function() {
+    populateTable();
+    createBarChart(eqGrpCatLabels,eqGrpCatBarData,niAvgLine);
+    showView('chartView');
+  }; 
+
+
+  const customLinePlugin = {
+    id: 'customLinePlugin',
+    afterDatasetsDraw(chart, args, pluginOptions) {
+        const { ctx, chartArea: { left, right, top, bottom }, tooltip } = chart;
+
+        if (tooltip && tooltip._active && tooltip._active.length) {
+            const x = tooltip._active[0].element.x;
+
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(x, top);
+            ctx.lineTo(x, bottom);
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.5)';
+            ctx.stroke();
+            ctx.restore();
+        }
+    }
+  };
+  // this makes the above Plugin available to any chart with tooltips turned on
+  Chart.register(customLinePlugin);
+
+  // Update padding dynamically on resize
+  window.addEventListener('resize', () => {
+    barPadding = calculateBarPadding(); // Recalculate padding
+    chart.options.scales.x.max = maxValue + barPadding; // Update max value
+    chart.update(); // Redraw the chart
+     
+  });
+    
+
+
+  // js to open and close accordion
+  let acc = document.getElementsByClassName("accordion-button");
+  let i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      /* Toggle between adding and removing the "active" class,
+      to highlight the button that controls the panel */
+      this.classList.toggle("active");
+
+      /* Toggle between hiding and showing the active panel */
+      let panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+
+  function createMultipleLineCharts(dataObject, secondSeriesValues, containerId, categoryLabels, years) {
+    // Get the container where charts will be appended
+    const container = document.getElementById(containerId);
+
+    // Get all keys from the dataObject
+    const keys = Object.keys(dataObject);
+
+    console.log(dataObject);
+
+    // Loop through each key in the dataObject
+    keys.forEach((key, index) => {
+        // Generate a unique ID for the canvas element
+        const canvasId = `chartCanvas${index}`;
+
+        const chartDiv = document.createElement("div");
+        chartDiv.classList.add('div-style-line'); // Add a class for styling
+        
+        // Create a canvas element for each chart
+        const canvas = document.createElement('canvas');
+        canvas.id = canvasId;
+
+        chartDiv.appendChild(canvas);
+
+        // Append the canvas to the container
+        container.appendChild(chartDiv);
+
+        // Get the data for the current series
+        const firstSeriesData = dataObject[key];
+        
+        // Ensure the length of secondSeriesValues matches firstSeriesData
+        if (!firstSeriesData || secondSeriesValues.length !== firstSeriesData.length) {
+            console.warn(`Invalid data for key "${key}"`);
+            return;
+        }
+
+        // Get the category label for the current chart
+        const categoryLabel = categoryLabels && categoryLabels[index] 
+            ? categoryLabels[index] 
+            : `Category ${index + 1}`;
+
+        // Create the labels array using categoryLabel and the years array
+        const labels = firstSeriesData.map((_, i) => `${categoryLabel} - ${years[i] || `Year ${i + 1}`}`);
+
+        // Create the context for the chart
+        const ctx = canvas.getContext('2d');
+        
+        // Create the chart instance
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels, // Use the generated labels array
+                datasets: [
+                    {
+                        label: `% of NI Population`,
+                        data: firstSeriesData,
+                        borderColor: '#00205b',
+                        pointRadius: 0,
+                        borderWidth: 4
+                    },
+                    {
+                        label: `NI average`,
+                        data: secondSeriesValues,
+                        fill: false,
+                        borderDash: [15,5],
+                        borderColor: '#3b80ae',
+                        pointRadius: 0,
+                        borderWidth: 2
+                    },
+                ],
+            },
+            options: {
+              responsive: true,
+              interaction: {
+                mode: 'index',
+                axis: 'x',
+                intersect: false
+              },
+              plugins: {
+                legend: {
+                    display: false,
+                },
+                datalabels: {
+                  display: false
+                },
+                title: {
+                  display: true,
+                  text: categoryLabel, // Keep the chart title to just the category label
+                  font: {
+                    size: 20
+                  }
+                }
+              },
+              scales: {
+                x: {
+                  grid: {
+                    display: false
+                  },
+                  ticks: {
+                    display: false
+                  },
+                  border: {
+                    display: false
+                  }
+                },
+                y: {
+                  min: 0,
+                  grid: {
+                    display: false
+                  },
+                  ticks: {
+                    maxTicksLimit: 5
+                  },
+                  border: {
+                    display: false
+                  }
+                }
+              }
+            },
+        });
+    });
+}
+
+
+const containerId = 'chartContainer'; // Make sure this div exists in your HTML
+
+// Call the function
+createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
+
+</script>
