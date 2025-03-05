@@ -8,7 +8,7 @@ body {
 #bar_line_chart {
   max-height: 350px;
 }
-  
+
 
 #top-container {
   display: flex;
@@ -87,7 +87,7 @@ h1 {
 
 .top-menu-item.selected-item {
   color: #142062;
-  background-color: white;    
+  background-color: white;
 }
 
 .selected-icon {
@@ -103,6 +103,11 @@ h2 {
 h3 {
     color: #404040;
     font-weight: bold;
+}
+
+h5 {
+  color: #404040;
+  font-weight: normal;
 }
 
 #content-centre {
@@ -124,16 +129,18 @@ h3 {
 }
 
 aside {
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
-    width: 20vw;
-    height: 100vh;
-    position: sticky;
-    top: 5px;
-    left: 1vw;
-  }
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+  width: 20vw;
+  height: 100vh;
+  position: sticky;
+  top: 5px;
+  left: 1vw;
+  display: flex;
+  flex-direction: column;
+}
 
 a {
 	color: #0064c8;
@@ -192,7 +199,7 @@ a:hover {
 }
 
 .box-container {
-    width: 400px;     
+    width: 400px;
 }
 
 .grey-box {
@@ -329,21 +336,21 @@ button:focus {
     line-height: 1em;
     padding: 5%;
     font-weight: bold;
-    text-shadow: -2px -2px 0 #FF6200,  
+    text-shadow: -2px -2px 0 #FF6200,
                 2px -2px 0 #FF6200,
                 -2px 2px 0 #FF6200,
                 2px 2px 0 #FF6200;
 }
 
 .ind-hex-label.positive {
-    text-shadow: -2px -2px 0 #00A857,  
+    text-shadow: -2px -2px 0 #00A857,
                 2px -2px 0 #00A857,
                 -2px 2px 0 #00A857,
                 2px 2px 0 #00A857;
 }
 
 .ind-hex-label.negative {
-    text-shadow: -2px -2px 0 #ff3131,  
+    text-shadow: -2px -2px 0 #ff3131,
                 2px -2px 0 #ff3131,
                 -2px 2px 0 #ff3131,
                 2px 2px 0 #ff3131;
@@ -729,16 +736,16 @@ footer a:hover {
 }
 
 #further-expander, #further-expander-map  {
-   cursor: pointer 
+   cursor: pointer
 }
 
 .further-info-text, #further-info-map {
     max-height: 0px;
-    -webkit-transition: max-height 1s; 
-    -moz-transition: max-height 1s; 
-    -ms-transition: max-height 1s; 
-    -o-transition: max-height 1s; 
-    transition: max-height 1s;  
+    -webkit-transition: max-height 1s;
+    -moz-transition: max-height 1s;
+    -ms-transition: max-height 1s;
+    -o-transition: max-height 1s;
+    transition: max-height 1s;
     overflow: hidden;
 }
 
@@ -871,24 +878,24 @@ footer a:hover {
     appearance: none;
     width: 300px;
     height: 15px;
-    border-radius: 5px;  
+    border-radius: 5px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
   }
-  
+
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 25px;
     height: 25px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background: #008675;
     cursor: pointer;
   }
-  
+
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
@@ -923,8 +930,8 @@ footer a:hover {
     width: 100%;
     margin-left: 5px;
   }
-  
-  
+
+
 
   ::placeholder{
     color: #ffffff
@@ -974,6 +981,7 @@ footer a:hover {
 
   .btn:hover {
     background-color: #6093d2;
+    color: #fff;
   }
 
   .btn:focus {
@@ -1081,7 +1089,7 @@ footer a:hover {
     background-color: #ccc;
     cursor: pointer;
   }
- 
+
   td a {
     color: #000000
   }
@@ -1169,6 +1177,7 @@ footer a:hover {
 
 .copy-button:hover {
   background-color: #6093d2;
+  color: #fff;
 }
 
 .copy-button:active {
@@ -1230,7 +1239,7 @@ footer a:hover {
 .accordion-button:after {
   /* plus sign is \02795*/
   /* down arrow is \2bc6 */
-  content: "\02795"; 
+  content: "\02795";
   font-size: 20px;
   color: #404040;
   float: right;
@@ -1252,8 +1261,12 @@ footer a:hover {
   transition: max-height 0.5s ease-out;
 }
 
-  
-
+#selection-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden; /* Prevents content overflow */
+}
 
 #selection-form button {
   border: none;
@@ -1262,4 +1275,159 @@ footer a:hover {
   margin: 2px;
   border-radius: 5px;
   text-align: left;
+}
+
+#selection-form button:hover {
+  background-color: #6093d2;
+  color: #fff;
+}
+
+#top-buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#top-buttons-container button {
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 30%; /* Allows buttons to adjust dynamically */
+}
+
+#key-metrics-container {
+  flex-grow: 1;
+  width: 100%;
+  overflow-y: auto;
+  /* border: 1px solid #ccc; */
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: space-between;
+  align-content: flex-start;
+  border-radius: 5px; /* Adds rounded corners */
+  background-color: #f6f9fb; /* Light background for contrast */
+}
+
+#key-metrics-container button {
+  border: none;
+  background-color: #eee;
+  color: #0064c8;
+  margin: 4px;
+  border-radius: 5px;
+  text-align: left;
+  cursor: pointer;
+  flex: 1 1 calc(50% - 10px);
+  text-align: center;
+  min-width: 100px;
+}
+
+/* Custom Scrollbar Styling */
+#key-metrics-container::-webkit-scrollbar {
+  width: 10px; /* Adjusts scrollbar width */
+}
+
+#key-metrics-container::-webkit-scrollbar-track {
+  background: #e0e0e0; /* Light grey track */
+  border-radius: 10px; /* Rounded track */
+}
+
+#key-metrics-container::-webkit-scrollbar-thumb {
+  background: #888; /* Darker scrollbar */
+  border-radius: 10px; /* Rounded scrollbar */
+}
+
+#key-metrics-container::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker shade on hover */
+}
+
+#s75-groups-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 20px;
+  height: 50vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#key-metrics-container-inter {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  min-height: 40vh; /* Ensures a reasonable minimum height */
+  height: auto; /* Let it expand naturally */
+  max-height: 100vh; /* Prevents it from growing beyond full height */
+}
+
+#selection-form-75group {
+  display: contents; /* Makes the form behave like it's not there */
+}
+#selection-form-measure {
+  display: contents; /* Makes the form behave like it's not there */
+}
+
+#selection-form-75group button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3878c5;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#selection-form-measure button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3878c5;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#selection-form-75group button:hover {
+  background-color: #0056b3;
+}
+
+#selection-form-measure button:hover {
+  background-color: #0056b3;
+}
+
+.chart-legend {
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#home-btn button {
+  border: none;
+  background-color: #eee;
+  color: #0064c8;
+  margin: 2px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 23px;
+  align-self: center;
+}
+
+#home-btn button:hover {
+  background-color: #6093d2;
+  color: #fff;
 }
