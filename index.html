@@ -25,6 +25,7 @@
       <script src = "scripts/config.js"></script> -->
 
       <link rel ="stylesheet" href ="style.css">
+      <script>import { base } from "$app/paths";</script>
 
       <!-- import data for use in charts - needs to be imported in each script -->
        <!-- only useful here if some data transformations to happen in head section -->
@@ -37,8 +38,18 @@
   <body>
 
     <div id="cookie-banner"></div>
+    
+    <nav class="warning">
+      <div class="col-wide middle" style=" text-align: center;">
+        <p style="margin-bottom: 0px;">This prototype application will be enhanced as further equality indicator data is released.</p>
+        <p style="margin-bottom: 0px;">We welcome feedback from users through our 
+          <a class="survey-link" href="https://dttselfserve.nidirect.gov.uk/NISRA/RateIt#/Equality_Matters" target="_blank"><span style="color: white;">short survey</span>
+            <img class = "new-tab" src = "img/opens-new-tab.svg"></a></p>
+        
+        </div>
+    </nav>
 
-    <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div>
+    <!-- <div id="prototype">This prototype application will be enhanced as further equality indicator data is released.</div> -->
 
     <div id="top-container">
       <div id="top-menu" class="grid mtb">
@@ -96,7 +107,7 @@
 
           <aside>
              <div id ="home-btn">
-              <button name = "backbutton">Back to Home Page</button>
+              <button name = "backbutton" alt="Home" onclick="window.location.href='index.html';">Back to Home Page</button>
               <!-- <hr style=" border-top: 3px solid rgba(0, 0, 0, .6); border-radius: 3px;"> -->
              </div>
             <h3 style="font-weight: normal; font-size: 14pt; margin-bottom: 0px; margin-top: 20px;">Explore other groups within <p class = "measure_title" style="color:#3878c5; font-weight: bold; margin-bottom: 10px;"></p></h3>
@@ -119,35 +130,47 @@
               <button name = "key" value = "pubt">Active Travel - Public Transport</button>
               <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
               <button name = "key" value = "artc">Arts and Culture activities participation</button>
+              <button name = "key" value = "c500">Census 2021 - Usual Resident Population</button>
+              <button name = "key" value = "c5011">Census 2021 - Economic Activity - In Employment</button>
+              <button name = "key" value = "c5012">Census 2021 - Economic Activity - Unemployed</button>
+              <button name = "key" value = "c5013">Census 2021 - Economically Inactive</button>
+              <button name = "key" value = "c5021">Census 2021 - Agriculture, energy and water employment</button>
+              <button name = "key" value = "c5022">Census 2021 - Manufacturing employment</button>
+              <button name = "key" value = "c5023">Census 2021 - Construction employment</button>
+              <button name = "key" value = "c5024">Census 2021 - Distribution, hotels and restaurants employment</button>
+              <button name = "key" value = "c5025">Census 2021 - Transport and communications employment</button>
+              <button name = "key" value = "c5026">Census 2021 - Financial, Real Estate, Professional and Administrative activities employment</button>
+              <button name = "key" value = "c5027">Census 2021 - Public administration, education and health employment</button>
+              <button name = "key" value = "c5028">Census 2021 - Other employment</button>
+              <button name = "key" value = "c5031">Census 2021 - Part-time: 15 hours or less worked per week</button>
+              <button name = "key" value = "c5032">Census 2021 - Part-time: 16-30 hours worked per week</button>
+              <button name = "key" value = "c5033">Census 2021 - Full-time: 31-48 hours worked per week</button>
+              <button name = "key" value = "c5034">Census 2021 - Full-time: 49+ hours worked per week</button>
               <button name = "key" value = "comr">Community Relations</button>
               <button name = "key" value = "cult">Cultural Identity</button>
-              <!-- <button name = "key" value = "c21501">Economic Activity</button> -->
               <button name = "key" value = "hsg1">Health Survey - Very Good or Good General Health</button>
               <button name = "key" value = "hsg2">Health Survey - Very Bad or Bad General Health</button>
               <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
               <button name = "key" value = "hssm">Health Survey - Smoking</button>
               <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
               <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
-              <!-- <button name = "key" value = "c21503">Hours Worked</button> -->
               <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
               <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
-              <!-- <button name = "key" value = "c21502">Industry of Employment</button> -->
               <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
               <button name = "key" value = "lone">Loneliness</button>
-              <!-- <button name = "key" value = "slsa">Qualifications of School Leavers</button> -->
-              <button name = "key" value = "refw">Refugee Welcome</button>
-              <button name = "key" value = "resp">Respect</button>
-              <button name = "key" value = "safe">Safe Towns and City Centres</button>
-              <button name = "key" value = "self">Self-efficacy</button>
-              <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
               <button name = "key" value = "sls1">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
               <button name = "key" value = "sls2">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
               <button name = "key" value = "sls3">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
               <button name = "key" value = "sls4">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
               <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
               <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
+              <button name = "key" value = "refw">Refugee Welcome</button>
+              <button name = "key" value = "resp">Respect</button>
+              <button name = "key" value = "safe">Safe Towns and City Centres</button>
+              <button name = "key" value = "self">Self-efficacy</button>
+              <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
+              <button name = "key" value = "shar">Shared Communities</button>
               <button name = "key" value = "spor">Sport and Physical Activity</button>
-              <!-- <button name = "key" value = "c21500">Usual Resident Population</button> -->
             </div>
           </form>
          </aside>
@@ -192,22 +215,18 @@
               <button class="copy-button">Copy table</button>
               <table id="dataTable">
                 <thead>
-                  <tr>
-                    <th class="eq_grp_name"></th>
-                    <th class = "measure_title"></th>
-                    <th>LCI</th>
-                    <th>UCI</th>
-                    <th>NI value</th>
-                  </tr>
                 </thead>
                 <tbody>
                 </tbody>
               </table>
             </div>
           </div>
-          <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
-          <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
-          <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
+
+          <div id="chartInfoContainer">
+            <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
+            <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
+            <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
+          </div>         
             
             <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
 
@@ -257,26 +276,47 @@
           <button name = "key" value = "pubt">Active Travel - Public Transport</button>
           <button name = "key" value = "walk">Active Travel - Walking or Cycling</button>
           <button name = "key" value = "artc">Arts and Culture activities participation</button>
+          <button name = "key" value = "c500">Census 2021 - Usual Resident Population</button>
+          <button name = "key" value = "c5011">Census 2021 - Economic Activity - In Employment</button>
+          <button name = "key" value = "c5012">Census 2021 - Economic Activity - Unemployed</button>
+          <button name = "key" value = "c5013">Census 2021 - Economically Inactive</button>
+          <button name = "key" value = "c5021">Census 2021 - Agriculture, energy and water employment</button>
+          <button name = "key" value = "c5022">Census 2021 - Manufacturing employment</button>
+          <button name = "key" value = "c5023">Census 2021 - Construction employment</button>
+          <button name = "key" value = "c5024">Census 2021 - Distribution, hotels and restaurants employment</button>
+          <button name = "key" value = "c5025">Census 2021 - Transport and communications employment</button>
+          <button name = "key" value = "c5026">Census 2021 - Financial, Real Estate, Professional and Administrative activities employment</button>
+          <button name = "key" value = "c5027">Census 2021 - Public administration, education and health employment</button>
+          <button name = "key" value = "c5028">Census 2021 - Other employment</button>
+          <button name = "key" value = "c5031">Census 2021 - Part-time: 15 hours or less worked per week</button>
+          <button name = "key" value = "c5032">Census 2021 - Part-time: 16-30 hours worked per week</button>
+          <button name = "key" value = "c5033">Census 2021 - Full-time: 31-48 hours worked per week</button>
+          <button name = "key" value = "c5034">Census 2021 - Full-time: 49+ hours worked per week</button>
           <button name = "key" value = "comr">Community Relations</button>
-          <!-- <button name = "key" value = "c21501">Economic Activity</button> -->
+          <button name = "key" value = "cult">Cultural Identity</button>
           <button name = "key" value = "hsg1">Health Survey - Very Good or Good General Health</button>
           <button name = "key" value = "hsg2">Health Survey - Very Bad or Bad General Health</button>
           <button name = "key" value = "hsns">Health Survey - Never Smoked</button>
           <button name = "key" value = "hssm">Health Survey - Smoking</button>
           <button name = "key" value = "hsec">Health Survey - Use E-Cigarettes</button>
           <!-- <button name = "key" value = "sahl">Higher Level Apprenticeships in FE Equality Data</button> --> 
-          <!-- <button name = "key" value = "c21503">Hours Worked</button> -->
           <button name = "key" value = "inc1">Income Deprivation and Inequality - Relative poverty</button>
           <button name = "key" value = "inc2">Income Deprivation and Inequality - Absolute poverty</button>
-          <!-- <button name = "key" value = "c21502">Industry of Employment</button> -->
           <!-- <button name = "key" value = "life">Life Satisfaction</button> -->
           <button name = "key" value = "lone">Loneliness</button>
-          <!-- <button name = "key" value = "slsa">Qualifications of School Leavers</button> -->
+          <button name = "key" value = "sls1">Qualifications of School Leavers - 3 A-levels (A*-C)</button>
+          <button name = "key" value = "sls2">Qualifications of School Leavers - 3 A-levels (A*-E) </button>
+          <button name = "key" value = "sls3">Qualifications of School Leavers - 2 A-levels (A*-E) </button>
+          <button name = "key" value = "sls4">Qualifications of School Leavers - 5 GCSEs (A*-C) </button>
+          <button name = "key" value = "sls5">Qualifications of School Leavers - 5 GCSEs (A*-C including GCSE English and maths)</button>
+          <button name = "key" value = "slsall">Qualifications of School Leavers - Total Leavers</button>
           <button name = "key" value = "refw">Refugee Welcome</button>
+          <button name = "key" value = "resp">Respect</button>
+          <button name = "key" value = "safe">Safe Towns and City Centres</button>
           <button name = "key" value = "self">Self-efficacy</button>
           <button name = "key" value = "prej">Self-reported prejudice against minority ethnic communities</button>
+          <button name = "key" value = "shar">Shared Communities</button>
           <button name = "key" value = "spor">Sport and Physical Activity</button>
-          <!-- <button name = "key" value = "c21500">Usual Resident Population</button> -->
         </div>
       </form>
     </div>
@@ -548,6 +588,60 @@
     return mappedValues;
 }
 
+// inverse lookup
+const invertObject = (lookupTableEqCode) => {
+  const inverted = {};
+
+  Object.entries(lookupTableEqCode).forEach(([key, values]) => {
+    values.forEach(value => {
+      if (!inverted[value]) {
+        inverted[value] = [];
+      }
+      inverted[value].push(key);
+    });
+  });
+
+  return inverted;
+};
+
+const invertedLookupEqCode = invertObject(lookupTableEqCode);
+console.log('inverted lookup:',invertedLookupEqCode);
+
+function returnAvailableS75ByLookup(data, matchString, lookupTable) {
+    if (typeof lookupTable !== 'object' || lookupTable === null) {
+        throw new Error("lookupTable must be a valid object");
+    }
+
+    if (typeof matchString !== 'string' || matchString.trim() === "") {
+        throw new Error("matchString must be a non-empty string");
+    }
+
+    // Filter keys in `data` that contain `matchString`
+    const matchedKeys = Object.keys(data).filter(key => key.includes(matchString));
+
+    // Extract EQ values from matched keys (pattern: EQ followed by numbers up to next underscore)
+    const eqValues = new Set();
+    const eqPattern = /EQ\d+/g;
+    
+    matchedKeys.forEach(key => {
+        const matches = key.match(eqPattern);
+        if (matches) {
+            matches.forEach(eq => eqValues.add(eq));
+        }
+    });
+
+    // Look up extracted EQ values in lookupTable and collect unique matches
+    const uniqueResults = new Set();
+    eqValues.forEach(eq => {
+        if (lookupTable.hasOwnProperty(eq)) {
+            lookupTable[eq].forEach(value => uniqueResults.add(value));
+        }
+    });
+
+    return [...uniqueResults];
+}
+
+
 // Get the current URL of the window
 let window_url = window.location.href;
 
@@ -555,6 +649,8 @@ let group;  // Variable to store the 's75' parameter value
 let ind;  // Variable to store the 'key' parameter value
 let s75CatMeasures;  // Variable to store the measures associated with the 's75' value
 let key_btns = document.getElementById("key-metrics-container").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-metrics-container"
+let s75AvaiMeasures; 
+let s75_btns = document.getElementById("top-buttons-container").getElementsByTagName("button");
 let key_btns_inter = document.getElementById("key-metrics-container-inter").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-metrics-container-inter"
 let measureTitle // Variable to store measure parameter;
 let eqGrpDisplayName // Variable to store group name;
@@ -622,7 +718,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
           // Otherwise, hide the button
           key_btns[j].style.display = "none";
         }
-      }
+      } 
 
       if (s75CatMeasures.includes(localStorage.getItem("key"))) {
         // If the current stored 'key' is still a valid option
@@ -642,7 +738,18 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
       group = localStorage.getItem("s75");
       // Retrieve the stored 's75' value
     }
-
+    s75AvaiMeasures = returnAvailableS75ByLookup(data, ind, invertedLookupEqCode);
+        // Call a function to retrieve measures associated with 's75'
+        for (let n = 0; n < s75_btns.length; n++) {  
+        // Loop through all buttons in "key-metrics-container"
+          if (s75AvaiMeasures.includes(s75_btns[n].value)) {  
+            // If the button's value is in the list of valid measures, show it
+            s75_btns[n].style.display = "block";
+          } else {
+           // Otherwise, hide the button
+           s75_btns[n].style.display = "none";
+          }
+        }
       if (window.location.href != base_url + "?s75=" + group + "&key=" + ind) {
     // If the URL is not already formatted correctly with the selected values
     window.location.href = base_url + "?s75=" + group + "&key=" + ind;
@@ -756,6 +863,7 @@ if (window_url.indexOf("?") > -1) {
   let s75CatNotesLabelsName =  "_" + group + "_section75_notes";
   let s75CatNotesLabels = filterVariablesByName(data, [ind, s75CatNotesLabelsName]);
   let furtherInfo = data[`${ind}_further_information`];
+  let s75grps = returnAvailableS75ByLookup(data,ind,invertedLookupEqCode);
 
 
   console.log('Year Labels:', yearLabels);
@@ -777,6 +885,7 @@ if (window_url.indexOf("?") > -1) {
   console.log('Section 75 Category Measures Titles:', s75CatMeasuresTitle);
   console.log('Section 75 Category Labels Notes: ',s75CatNotesLabels);
   console.log('Further Information ',furtherInfo);
+  console.log('Section 75 Available Groups:', s75grps);
 
   let chartInstance = null;
 
@@ -990,6 +1099,11 @@ if (window_url.indexOf("?") > -1) {
     measure_title[i].innerHTML = measureTitle;
   }
 
+  const measure_title_table = document.querySelectorAll('.measure_title_table');
+  for (let i = 0; i < measure_title_table.length; i++) {
+    measure_title_table[i].innerHTML = measureTitle + " (%)";
+  }
+
   const measures_in_group = document.querySelectorAll('.measures_in_group');
   for (let i = 0; i < measures_in_group.length; i++) {
     measures_in_group[i].innerHTML = s75CatMeasures;
@@ -1054,12 +1168,38 @@ if (window_url.indexOf("?") > -1) {
   function populateTable() {
     const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
     tableBody.innerHTML = "";
-    
+
     // Ensure niAvgLine is treated as a single value (if it's not an array)
     const niValue = Array.isArray(niAvgLine) ? niAvgLine[0] : niAvgLine;
     const tableDataArray = [];
 
+    const allLciNull = eqGrpLciCatBarData.every(val => val ===null);
+    const allUciNull = eqGrpUciCatBarData.every(val => val ===null);
+
     if (eqGrpCatBarData[i]!== null){
+
+      const headerRow = document.createElement("tr");
+      const headers = [eqGrpDisplayName,measureTitle];
+      if(!allLciNull) headers.push("LCI (%)");
+      if(!allUciNull) headers.push("UCI (%)");
+      if(niValue !== 100) headers.push("NI Value (%)");
+
+      headers.forEach((headerText,index) => {
+        const headerCell = document.createElement("th");
+        
+        if (index === 0) {
+          headerCell.className = "eq_grp_name";
+          headerCell.textContent = headerText;
+        } else if (index === 1){
+          headerCell.className = "measure_title_table";
+          headerCell.textContent = headerText;
+        }  else {
+          headerCell.textContent = headerText;
+        }
+        headerRow.appendChild(headerCell);
+      });
+      document.getElementById("dataTable").getElementsByTagName("thead")[0].appendChild(headerRow);
+
       for (let i = 0; i < eqGrpCatLabels.length; i++) {
           const row = document.createElement("tr");
 
@@ -1070,19 +1210,25 @@ if (window_url.indexOf("?") > -1) {
           const povCell = document.createElement("td");
           povCell.textContent = eqGrpCatBarData[i];
           row.appendChild(povCell);
-          
-          const lcipovCell = document.createElement("td");
-          lcipovCell.textContent = eqGrpLciCatBarData[i];
-          row.appendChild(lcipovCell);
-          
-          const ucipovCell = document.createElement("td");
-          ucipovCell.textContent = eqGrpUciCatBarData[i];
-          row.appendChild(ucipovCell);
 
-          const niCell = document.createElement("td");
-          niCell.textContent = niValue;
-          row.appendChild(niCell);
-        
+          if (!allLciNull && eqGrpLciCatBarData[i] !== null){
+            const lcipovCell = document.createElement("td");
+            lcipovCell.textContent = eqGrpLciCatBarData[i];
+            row.appendChild(lcipovCell);
+          }
+
+          if (!allUciNull && eqGrpUciCatBarData[i] !== null){
+            const ucipovCell = document.createElement("td");
+            ucipovCell.textContent = eqGrpUciCatBarData[i];
+            row.appendChild(ucipovCell);
+          }
+
+          if (niValue !== 100){
+            const niCell = document.createElement("td");
+            niCell.textContent = niValue;
+            row.appendChild(niCell);
+          }
+
           tableBody.appendChild(row);
 
           // Store data as an object
@@ -1240,28 +1386,159 @@ if (window_url.indexOf("?") > -1) {
   // click event listeners for download chart image button
   document.getElementById('downloadButton').addEventListener('click', () => downloadChart());
 
-  function downloadChart(){
+  // // set chart background to white. default is transparent for download
+  const backgroundColorPlugin = {
+     id: 'customCanvasBackgroundColor',
+     beforeDraw: (chart) => {
+       const ctx = chart.canvas.getContext('2d');
+       const {width,height} = chart;
+       ctx.save();
+       //ctx.globalCompositeOperation = 'destination-over';
+       ctx.fillStyle = 'white';
+       ctx.fillRect(0, 0, width, height);
+      
+       //add title
+       //ctx.fillStyle = 'black';
+       //ctx.font = 'bold 18px Arial';
+       //ctx.textAlign = 'center';
+       //ctx.fillText(measureTitle,width/2,25);
+       
+       ctx.restore();
+     }
+   }
+   Chart.register(backgroundColorPlugin);
+
+  function downloadChart() {
     if (chartInstance) {
-      const link = document.createElement('a');
-      const chart_image_filename = measureTitle + ` ` + latestYear.slice(0,4) + `-` + latestYear.slice(5,7) + `.png`;
-      link.href = chartInstance.toBase64Image();
-      link.download = chart_image_filename;
-      link.click()
+        const chartCanvas = chartInstance.canvas;
+        const extraTitleSpace = 35;
+        const extraWatermarkTitleSpace = 50;
+        const extraSpacingBetweenTitleAndSubheading = 15; // Space between title & subheading
+        const extraSpacingAfterSubheading = 15; // Space between subheading and "Measure split by"
+        const originalWidth = chartCanvas.width;
+        const originalHeight = chartCanvas.height;
+
+        // Get the subheading text
+        let measureText = document.getElementById("how_do_we_measure").innerText || "";
+        measureText = measureText.slice(0, measureText.length - 1); // Trim last character if needed
+        let groupName = document.querySelector(".eq_grp_name").innerText.toLowerCase();
+        
+        // Capitalize the first letter of groupName
+        groupName = groupName.charAt(0).toUpperCase() + groupName.slice(1);
+        
+        const subHeading = `${measureText}`; // Main subheading text
+        const groupHeading = "Split by"; // Static text
+
+        // Create a new canvas
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = originalWidth;
+        const ctx = tempCanvas.getContext('2d');
+
+        // Calculate text wrapping for subheading
+        ctx.font = '24px sans-serif';
+        const maxWidth = originalWidth * 0.8; // Limit width to 80% of the canvas to allow for margins
+        const lineHeight = 30;
+        const subHeadingLines = wrapText(ctx, subHeading, maxWidth);
+        const extraMeasureSpace = (subHeadingLines.length * lineHeight) + lineHeight + extraSpacingAfterSubheading;
+
+        // Adjust canvas height
+        tempCanvas.height = originalHeight + extraTitleSpace + extraMeasureSpace + extraWatermarkTitleSpace + extraSpacingBetweenTitleAndSubheading;
+
+        // Fill background
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+        // Add title
+        ctx.fillStyle = 'black';
+        ctx.font = 'bold 30px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(measureTitle + ' ' + latestYear, originalWidth / 2, 25);
+
+        // Add extra space before subheading
+        let yPosition = 50 + extraSpacingBetweenTitleAndSubheading;
+
+        // Draw subheading (normal text) line by line
+        ctx.font = '24px sans-serif';
+        ctx.fillStyle = 'black';
+        subHeadingLines.forEach(line => {
+            ctx.fillText(line, originalWidth / 2, yPosition);
+            yPosition += lineHeight;
+        });
+
+        // Move down slightly for "Measure split by {groupName}"
+        yPosition += extraSpacingAfterSubheading;
+
+        // Set text alignment to left for natural spacing
+        ctx.textAlign = 'left';
+
+        // Find total text width to center them as a unit
+        ctx.font = '24px sans-serif';
+        const groupHeadingWidth = ctx.measureText(groupHeading).width;
+        ctx.font = 'bold 24px sans-serif';
+        const groupNameWidth = ctx.measureText(groupName).width;
+        const totalWidth = groupHeadingWidth + groupNameWidth + 10; // 10px spacing
+        const startX = (originalWidth - totalWidth) / 2;
+
+        // Draw "Measure split by" in normal text
+        ctx.font = '24px sans-serif';
+        ctx.fillStyle = 'black';
+        ctx.fillText(groupHeading, startX, yPosition);
+
+        // Draw groupName in bold and blue (#3878c5), right after "Measure split by"
+        ctx.font = 'bold 24px sans-serif';
+        ctx.fillStyle = '#3878c5';
+        ctx.fillText(groupName, startX + groupHeadingWidth + 5, yPosition); // 5px space
+
+        // Draw the chart
+        ctx.drawImage(chartCanvas, 0, extraTitleSpace + extraMeasureSpace + extraSpacingBetweenTitleAndSubheading);
+
+        // Load and add watermark
+        const watermark = new Image();
+        watermark.src = 'img/nisra-only-colour.png';
+        watermark.onload = function () {
+            const wmWidth = watermark.width * 0.5;
+            const wmHeight = watermark.height * 0.5;
+            const wmX = tempCanvas.width - wmWidth - 10;
+            const wmY = tempCanvas.height - wmHeight - 10;
+
+            ctx.drawImage(watermark, wmX, wmY, wmWidth, wmHeight);
+
+            // Download chart
+            const link = document.createElement('a');
+            const chart_image_filename = measureTitle + ` ` + latestYear.slice(0, 4) + `-` + latestYear.slice(5, 7) + `.png`;
+            link.href = tempCanvas.toDataURL('image/png');
+            link.download = chart_image_filename;
+            link.click();
+        };
     }
   }
 
-  // // set chart background to white. default is transparent for download
-  // const backgroundColorPlugin = {
-  //   id: 'customCanvasBackgroundColor',
-  //   beforeDraw: (chart) => {
-  //     const ctx = chart.canvas.getContext('2d');
-  //     ctx.save();
-  //     ctx.globalCompositeOperation = 'destination-over';
-  //     ctx.fillStyle = 'white';
-  //     ctx.fillRect(0, 0, chart.width, chart.height);
-  //     ctx.restore();
-  //   }
-  // };
+  // Function to wrap text into multiple lines
+  function wrapText(ctx, text, maxWidth) {
+    const words = text.split(' ');
+    let lines = [];
+    let currentLine = words[0];
+
+    for (let i = 1; i < words.length; i++) {
+        let testLine = currentLine + ' ' + words[i];
+        if (ctx.measureText(testLine).width < maxWidth) {
+            currentLine = testLine;
+        } else {
+            lines.push(currentLine);
+            currentLine = words[i];
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+  }
+
+
+
+
+
+
+
+ 
 
   // click event listeners for view chart and view table buttons
   document.getElementById('chartBtn').addEventListener('click', () => showView('chartView'));
@@ -1270,10 +1547,13 @@ if (window_url.indexOf("?") > -1) {
   function showView(viewId) {
     const tableView = document.getElementById("tableView");
     const chartView = document.getElementById("chartView");
+    const chartButton = document.getElementById('chartBtn');
 
     if (viewId === 'tableView'){
       tableView.style.display = "block";
       chartView.style.display = "none";
+      chartButton.style.backgroundColor = '#fff';
+      chartButton.style.color = '#00205B';
       // destroy chart instance if it exists to free up memory
       if (chartInstance) {
         chartInstance.destroy();
@@ -1282,6 +1562,8 @@ if (window_url.indexOf("?") > -1) {
     } else if (viewId === 'chartView'){
       tableView.style.display = "none";
       chartView.style.display = "block";
+      chartButton.style.backgroundColor = '#00205B';
+      chartButton.style.color = '#fff';
       // recreate chart only when needed
       if (!chartInstance){
         createBarChart(eqGrpCatLabels,eqGrpCatBarData,niAvgLine);
@@ -1369,6 +1651,7 @@ if (window_url.indexOf("?") > -1) {
   }
 
   function createMultipleLineCharts(dataObject, secondSeriesValues, containerId, categoryLabels, years) {
+    const chartInfoContainer = document.getElementById("chartInfoContainer");
     // Get the container where charts will be appended
     const container = document.getElementById(containerId);
 
@@ -1450,6 +1733,7 @@ if (window_url.indexOf("?") > -1) {
         const ctx = canvas.getContext('2d');
 
         if (nonNull !== 1){
+          chartInfoContainer.style.display = "block";
           // Create the chart instance
           new Chart(ctx, {
               type: 'line',
@@ -1530,6 +1814,8 @@ if (window_url.indexOf("?") > -1) {
           });
 
         }else{
+          chartInfoContainer.style.display = "none";
+          legend.style.display = "none";
           container.innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Historic data is not available for this measure</center>';
         }
 

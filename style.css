@@ -1,3 +1,8 @@
+.new-tab {
+	height: 1em;
+	margin-left: 0.2em;
+}
+
 body {
   font-family: Open Sans, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   font-size: 12pt;
@@ -150,6 +155,16 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+.survey-link {
+  text-decoration: underline;
+  color: #00205B;
+}
+
+.survey-link:hover {
+  text-decoration-color: white;
+}
+
 
 /* a:visited {
 	color: purple;
@@ -527,10 +542,15 @@ a.cookies-infobar_btn, a.cookies-infobar_btn_reject, a.cookiesbarlink {
     color: white;
     background-color: #3878c5;
     margin-bottom: 0px;
-    padding: 10px 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
     font-size: 1em;
+    font-weight: bold;
+    justify-content: center;
+    width: 100%;
+    display: flex;
   }
-
+  
   .nisrafooter ul {
     display: block;
     list-style-type: disc;
@@ -1372,40 +1392,46 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3878c5;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
+  border: 4px solid #949494;
+  border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  transition: border 0.3s ease;
+  /* text-transform: uppercase; */
 }
 
 #selection-form-measure button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3878c5;
-  color: #fff;
+  background-color: #fff;
+  color: #000;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
   padding: 10px;
-  border: none;
-  border-radius: 5px;
+  border: 4px solid #949494;
+  border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  transition: border 0.3s ease;
+  /* text-transform: uppercase; */
 }
 
 #selection-form-75group button:hover {
-  background-color: #0056b3;
+  background-color: rgb(245,245,245);
+  border: 4px solid #00205B;
 }
 
 #selection-form-measure button:hover {
-  background-color: #0056b3;
+  background-color: rgb(245,245,245);
+  border: 4px solid #00205B;
 }
 
 .chart-legend {
