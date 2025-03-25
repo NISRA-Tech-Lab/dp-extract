@@ -3,11 +3,32 @@
 	margin-left: 0.2em;
 }
 
+
+html {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: Open Sans, -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
   font-size: 12pt;
-  background-color: #fff;
-  background-image: linear-gradient(180deg, #fcfdfd 360px, #f2f5f8 620px);
+  background-color: #f2f5f8;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+main {
+  flex: 1;
 }
 
 #bar_line_chart {
@@ -1281,6 +1302,14 @@ footer a:hover {
   transition: max-height 0.5s ease-out;
 }
 
+#notes_in_measure{
+  white-space: pre-line;
+}
+
+#notes_in_group{
+  white-space: pre-line;
+}
+
 #selection-form {
   display: flex;
   flex-direction: column;
@@ -1361,13 +1390,18 @@ footer a:hover {
   background: #555; /* Darker shade on hover */
 }
 
-#s75-groups-container {
+#pathways-container,
+#s75-groups-container,
+#depart-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-auto-rows: min-content; /* Ensures rows take only the space they need */
   gap: 20px;
-  height: 50vh;
+  min-height: 20vh; /* Starts compact */
+  max-height: 40vh; /* Allows expansion, but prevents excessive growth */
   padding: 20px;
   box-sizing: border-box;
+  transition: max-height 0.3s ease-in-out; /* Smooth expansion */
 }
 
 #key-metrics-container-inter {
@@ -1378,34 +1412,15 @@ footer a:hover {
   box-sizing: border-box;
   min-height: 40vh; /* Ensures a reasonable minimum height */
   height: auto; /* Let it expand naturally */
-  max-height: 100vh; /* Prevents it from growing beyond full height */
 }
 
-#selection-form-75group {
-  display: contents; /* Makes the form behave like it's not there */
-}
-#selection-form-measure {
+#selection-form-pathway, #selection-form-75group, #selection-form-depart, #selection-form-measure{
   display: contents; /* Makes the form behave like it's not there */
 }
 
-#selection-form-75group button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-  color: #000;
-  font-size: 1rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  border: 4px solid #949494;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: border 0.3s ease;
-  /* text-transform: uppercase; */
-}
-
+#selection-form-pathway button,
+#selection-form-75group button,
+#selection-form-depart button,
 #selection-form-measure button {
   display: flex;
   justify-content: center;
@@ -1424,13 +1439,11 @@ footer a:hover {
   /* text-transform: uppercase; */
 }
 
-#selection-form-75group button:hover {
-  background-color: rgb(245,245,245);
-  border: 4px solid #00205B;
-}
-
+#selection-form-pathway button:hover,
+#selection-form-75group button:hover,
+#selection-form-depart button:hover,
 #selection-form-measure button:hover {
-  background-color: rgb(245,245,245);
+  background-color: rgb(235, 235, 235);
   border: 4px solid #00205B;
 }
 
@@ -1456,4 +1469,66 @@ footer a:hover {
 #home-btn button:hover {
   background-color: #6093d2;
   color: #fff;
+}
+
+#cookie-banner {
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color:#142062;
+	color:#FFF;
+	padding: 10px;
+	text-align: left;
+    display: none;
+}
+
+.cookies-infobar {
+    color: #fff;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    text-align: left;
+}
+
+.cookies-infobar.cookies-infobar_accepted {
+    display: none;
+}
+
+.cookies-infobar_wrapper {
+    margin: 10px;
+}
+
+.cookies-infobar a {
+    color: inherit;
+}
+
+.cookies-infobar_btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #0f8243;
+  text-decoration: none;
+  color: #fff;
+  text-transform: none;
+  font-size: 1.2em;
+}
+
+a.cookies-infobar_btn, a.cookies-infobar_btn_reject {
+	color: #fff !important;
+}
+
+a.cookiesbarlink {
+    color: #2990FF;
+}
+
+.cookies-infobar_btn_reject {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #6d6e72;
+  text-decoration: none;
+  border-radius: 3px;
+  color: #fff;
+  text-transform: none;
+  font-size: 1.2em;
 }
