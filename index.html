@@ -75,7 +75,7 @@
               <form id = "selection-form" style="list-style-type: none; padding: 0;">
                 <div id="top-buttons-container">
                   <button name = "s75" value = "age">Age</button>
-                  <button name = "s75" value = "depend">Dependents</button>
+                  <button name = "s75" value = "depend">Dependants</button>
                   <button name = "s75" value = "disab">Disability</button>
                   <button name = "s75" value = "ethnic">Ethnic Group</button>
                   <button name = "s75" value = "marital">Marital Status</button>
@@ -151,58 +151,62 @@
                   <h3><span class = "measure_title"></span> <span class= "latest_year" style = "color:#3878c5;"></span></h3>
                   <div id ="barInfoContainer">
                     <p style="margin-bottom: 0px;">The following bar chart shows data on this measure for <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
-                  <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue line.</p>
+                    <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue line.</p>
+                
+                    <!-- <br><hr style="border-top:3px solid rgba(0, 0, 0, .6)"> -->
+
+                    <button class="btn" id="chartBtn">View chart</button>
+                    <button class="btn" id="tableBtn">View table</button>
+
+                  </div>
+
+                  <div id="chartView" class ="chart-container">
+                    <button class="btn" id="downloadButton">Download chart as image</button>
+                    <!-- <div class="chart-container"> -->
+                    <canvas id="bar_line_chart"></canvas>
+                  </div>
+
+                  <button class="accordion-button" style="margin-top: 30px;">Click to show data summary for <span style="font-weight: bold;" class = "measure_title"></span> <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span></button>
+                  <div class="panel">
+                    <p class="data_summary" style="margin-bottom: 10px; margin-top: 10px;"></p>
+                    <button class="btn" id="copyTextButton" style="margin-bottom: 10px;">Copy Data Summary</button>
+                  </div>
+
+                  <div id="tableView" class="table-container">
+                    <button class="copy-button">Copy table</button>
+                    <table id="dataTable">
+                      <thead>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+            <div id="chartInfoContainer">
+                <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
+                <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
+                <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
+                      
+                
+              <button class="btn" id="line_chartBtn">View chart</button>
+              <button class="btn" id="line_tableBtn">View table</button>
               
-              <p class="data_summary" style="margin-bottom: 10px;"></p>
-              <button class="btn" id="copyTextButton">Copy Data Summary</button>
-              <br><hr style="border-top:3px solid rgba(0, 0, 0, .6)">
-
-              <button class="btn" id="chartBtn">View chart</button>
-              <button class="btn" id="tableBtn">View table</button>
-              </div>
-              <div id="chartView" class ="chart-container">
-                  <button class="btn" id="downloadButton">Download chart as image</button>
-                <!-- <div class="chart-container"> -->
-              <canvas id="bar_line_chart"></canvas>
-              
-
-              </div>
-
-              <div id="tableView" class="table-container">
-                <button class="copy-button">Copy table</button>
-                <table id="dataTable">
-                  <thead>
-                  </thead>
-                  <tbody>
-                  </tbody>
+              <div id="tableView2" class="table-container" style = "display: none;">
+                <button class="copy-button" id="copy-button2">Copy table</button>        
+                <table id="dataTable2">
+                    <thead>
+                        <tr>
+                            <!-- Dynamically add columns for age groups -->
+                            <tr id="ageGroupHeaders"></tr>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
                 </table>
               </div>
             </div>
-
-            <div id="chartInfoContainer">
-              <h3 style="margin-top: 30px;"><span class = "measure_title"></span> time trend - <span class="start_year" style = "color:#3878c5;"></span> <span style = "color:#3878c5;">to</span> <span class="latest_year" style = "color:#3878c5;"></span></h3>
-              <p style="margin-bottom: 0px;">The following line chart shows data on this measure from <span class= "start_year" style="color:#3878c5; font-weight: bold;"></span> to <span class= "latest_year" style="color:#3878c5; font-weight: bold;"></span> split by <span class = "eq_grp_name" style="color:#3878c5; font-weight: bold;"></span>.</p>
-              <p style="margin-bottom: 15px;">The Northern Ireland (NI) value is added for comparison in a blue dashed line.</p>
-            </div>         
-              
-            <button class="btn" id="line_chartBtn">View chart</button>
-            <button class="btn" id="line_tableBtn">View table</button>
-            
             <div id="chartContainer" class="grid" style="margin-top: 30px;"></div>
-            
-            <div id="tableView2" class="table-container" style = "display: none;">
-              <button class="copy-button" id="copy-button2">Copy table</button>        
-              <table id="dataTable2">
-                  <thead>
-                      <tr>
-                          <!-- Dynamically add columns for age groups -->
-                          <tr id="ageGroupHeaders"></tr>
-                      </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-              </table>
-            </div>
     
               <div>
                 <br>
@@ -215,9 +219,9 @@
               <h3>Notes</h3>
             <button class="accordion-button">Click to expand or hide notes section for <span style="font-weight: bold;" class = "measure_title"></span> by <span style="font-weight: bold; color:#3878c5;"class = "eq_grp_name"></span></button>
               <div class="panel">
-                <p style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "measure_title" style="font-weight: bold;font-size: 18px;"></span></p>
+                <p id = "measureNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "measure_title" style="font-weight: bold;font-size: 18px;"></span></p>
                 <p id = "notes_in_measure"></p>
-                <p style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "eq_grp_name" style="font-weight: bold;font-size: 18px;"></span></p>
+                <p id = "groupNotesParagraph" style="margin-bottom: 0px; font-weight: bold;font-size: 18px;">Notes on <span class = "eq_grp_name" style="font-weight: bold;font-size: 18px;"></span></p>
                 <p id = "notes_in_group"></p>
               </div> <!--close panel div-->
   
@@ -243,7 +247,7 @@
         <form id = "selection-form-75group" style="list-style-type: none; padding: 0;">
           <div id="s75-groups-container">
             <button name = "home" value = "age">Age</button>
-            <button name = "home" value = "depend">Dependents</button>
+            <button name = "home" value = "depend">Dependants</button>
             <button name = "home" value = "disab">Disability</button>
             <button name = "home" value = "ethnic">Ethnic Group</button>
             <button name = "home" value = "marital">Marital Status</button>
@@ -664,6 +668,7 @@
   let key_btns_inter = document.getElementById("key-metrics-container-inter").getElementsByTagName("button");  // Retrieves all button elements within the element that has the ID "key-metrics-container-inter"
   let measureTitle // Variable to store measure parameter;
   let eqGrpDisplayName // Variable to store group name;
+  let nonNull; // variable for creating and hiding linecharts
   var home_scrn = document.getElementById("home-scrn");
   var s75_scrn = document.getElementById("s75-scrn");
   var depart_scrn = document.getElementById("depart-scrn");
@@ -1285,6 +1290,23 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   document.getElementById("notes_in_group").innerHTML = s75CatNotesLabels;
 
 
+  const notesInMeasure = document.getElementById("notes_in_measure");
+  const measureNotesParagraph = document.getElementById("measureNotesParagraph");
+  if (notesInMeasure && notesInMeasure.innerHTML.trim()!= ""){
+    measureNotesParagraph.style.display = "block";
+  } else {
+    measureNotesParagraph.style.display = "none";
+  }
+ 
+  const notesInGrp = document.getElementById("notes_in_group");
+  const groupNotesParagraph = document.getElementById("groupNotesParagraph");
+  if (notesInGrp && notesInGrp.innerHTML.trim()!= ""){
+    groupNotesParagraph.style.display = "block";
+  } else {
+    groupNotesParagraph.style.display = "none";
+  }
+
+
   function populateTable() {
     const tableBody = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
     tableBody.innerHTML = "";
@@ -1479,8 +1501,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
 
         categoriesWithDiff.push({
             category: category,
-            percentage: percentage.toFixed(1),
-            difference: Math.abs(diff).toFixed(1),
+            percentage: percentage.toFixed(0),
+            difference: Math.abs(diff).toFixed(0),
             direction: direction
         });
     });
@@ -1510,14 +1532,12 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
 
     // Append sorted "higher" category data
     higherCategories.forEach(entry => {
-        let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference}% ${entry.direction}.<br>`;
-
-        // Bold the highest "higher" value
-        if (entry === highestHigher) {
-            formattedText = `<strong>${formattedText}</strong>`;
-        }
-
-        summaryText += formattedText;
+      let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
+      let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference} ${pointLabel} ${entry.direction}.<br>`;
+      if (entry === highestHigher) {
+          formattedText = `<strong>${formattedText}</strong>`;
+      }
+      summaryText += formattedText;
     });
 
     // Append "same" category data
@@ -1527,14 +1547,12 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
 
     // Append sorted "lower" category data (now in ascending order)
     lowerCategories.forEach(entry => {
-        let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference}% ${entry.direction}.<br>`;
-
-        // Bold the highest "lower" value (last one in reversed list)
-        if (entry === highestLower) {
-            formattedText = `<strong>${formattedText}</strong>`;
-        }
-
-        summaryText += formattedText;
+      let pointLabel = entry.difference === "1" ? "percentage point" : "percentage points";
+      let formattedText = `${entry.category} is ${entry.percentage}%, ${entry.difference} ${pointLabel} ${entry.direction}.<br>`;
+      if (entry === highestLower) {
+          formattedText = `<strong>${formattedText}</strong>`;
+      }
+      summaryText += formattedText;
     });}
     else{
       summaryText = `This measure records the ${howMeasure}<br>`;
@@ -1807,9 +1825,11 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   function showView(viewId) {
   const tableView = document.getElementById("tableView");
   const chartView = document.getElementById("chartView");
+  const chartButton = document.getElementById('chartBtn');
 
   const tableView2 = document.getElementById("tableView2");
   const chartView2 = document.getElementById("chartContainer");
+  const chartButton2 = document.getElementById('line_chartBtn');
 
   const legend = document.querySelector('.chart-legend');
 
@@ -1817,6 +1837,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   if (viewId === 'tableView') {
     tableView.style.display = "block";
     chartView.style.display = "none";
+    chartButton.style.backgroundColor = '#fff';
+    chartButton.style.color = '#00205B';
     // Only destroy the bar chart when it's in the 'chartView'
     if (chartInstance && chartView.style.display === "block") {
       chartInstance.destroy();
@@ -1824,7 +1846,9 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
     }
   } else if (viewId === 'chartView') {
     tableView.style.display = "none";
-    chartView.style.display = "grid";
+    chartView.style.display = "block";
+    chartButton.style.backgroundColor = '#00205B';
+    chartButton.style.color = '#fff';
     if (!chartInstance) {
       createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
     }
@@ -1834,6 +1858,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   if (viewId === 'tableView2') {
     tableView2.style.display = "block";
     chartView2.style.display = "none";
+    chartButton2.style.backgroundColor = '#fff';
+    chartButton2.style.color = '#00205B';
     legend.style.display = 'none'; // Hide the legend
     // Don't destroy the bar chart here
     populateTable2()
@@ -1844,7 +1870,12 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   } else if (viewId === 'chartContainer') {
     tableView2.style.display = "none";
     chartView2.style.display = "grid";
-    legend.style.display = 'block'; // Show the legend
+    chartButton2.style.backgroundColor = '#00205B';
+    chartButton2.style.color = '#fff';
+    if (nonNull !== 1){
+      legend.style.display = 'block';
+    }
+     // dont Show the legend
     // Only destroy the line chart when necessary
     if (!lineChartInstance) {
       createMultipleLineCharts(eqGrpCatLineData, niLineData, containerId, eqGrpCatLabels, yearLabels);
@@ -1855,9 +1886,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
   // Function to populate the table and create charts
   window.onload = function() {
     populateTable();
-    createBarChart(eqGrpCatLabels, eqGrpCatBarData, niAvgLine);
     showView('chartView');
-    showLineView('chartContainer');
+    showView('chartContainer');
   };
 
   // funcitonality for click button copying of descriptive text
@@ -1929,7 +1959,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
       }
     });
   }
-
+  
   function createMultipleLineCharts(dataObject, secondSeriesValues, containerId, categoryLabels, years) {
     // Get the container where charts will be appended
     const container = document.getElementById(containerId);
@@ -1994,7 +2024,7 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
             }     
         }
         console.log(count); 
-        var nonNull = firstSeriesData.length - count;
+        nonNull = firstSeriesData.length - count;
 
         // Ensure the length of secondSeriesValues matches firstSeriesData
         if (!firstSeriesData || secondSeriesValues.length !== firstSeriesData.length) {
@@ -2096,6 +2126,8 @@ let selections = window_url.slice(window_url.indexOf("?") + 1).split("&");
             });
 
         } else {
+            chartInfoContainer.style.display = "none";
+            legend.style.display = "none";
             container.innerHTML = '<center style="font-weight: bold; font-size: 18pt;">Historic data is not available for this measure</center>';
         }
 

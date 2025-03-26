@@ -1425,26 +1425,51 @@ footer a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background: transparent;
   color: #000;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 17px;
   text-align: center;
-  padding: 10px;
-  border: 4px solid #949494;
+  padding: 0 20px;
+  border: 2px solid #4F95DA;
   border-radius: 2px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: border 0.3s ease;
-  /* text-transform: uppercase; */
+  transition: 0.3s ease-in-out;
+  min-height: 60px;
+  outline:none;
+  position :relative;
 }
 
 #selection-form-pathway button:hover,
 #selection-form-75group button:hover,
 #selection-form-depart button:hover,
 #selection-form-measure button:hover {
-  background-color: rgb(235, 235, 235);
+  transition: 0.3s ease-in-out;
+  background: #4F95DA;
+  color: white;
+  /* font-weight: bold; */
   border: 4px solid #00205B;
+  padding: 0 16px;
+}
+
+#selection-form-pathway button svg,
+#selection-form-75group button svg,
+#selection-form-depart button svg,
+#selection-form-measure button svg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 0.3s ease-in-out;
+}
+
+#selection-form-pathway button:hover svg,
+#selection-form-75group button:hover svg,
+#selection-form-depart button:hover svg,
+#selection-form-measure button:hover svg  {
+  stroke-dashoffset: -480;
 }
 
 .chart-legend {
